@@ -11,7 +11,7 @@ class Team(models.Model):
 class Person(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     team = models.ForeignKey(
         Team, on_delete=models.CASCADE, related_name="members", null=True, blank=True
     )
