@@ -4,9 +4,10 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from teams.models import Team, Person
+from teams.models import Person
 from teams.pagination import ApiPagination
 from teams.serializers import PersonListSerializer, PersonDetailSerializer
+from teams.tests.test_team_api import sample_team
 
 
 PERSON_URL = reverse("teams:person-list")
@@ -21,15 +22,6 @@ def sample_person(**params):
     defaults.update(params)
 
     return Person.objects.create(**defaults)
-
-
-def sample_team(**params):
-    defaults = {
-        "name": "Team 1",
-    }
-    defaults.update(params)
-
-    return Team.objects.create(**defaults)
 
 
 def detail_url(person_id):
