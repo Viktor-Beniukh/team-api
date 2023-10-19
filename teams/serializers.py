@@ -4,6 +4,7 @@ from teams.models import Team, Person
 
 
 class PersonSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Person
         fields = ("id", "first_name", "last_name", "email")
@@ -33,7 +34,6 @@ class TeamDetailSerializer(serializers.ModelSerializer):
 
 
 class PersonListSerializer(serializers.ModelSerializer):
-
     team_name = serializers.CharField(source="team.name", read_only=True)
 
     class Meta:
@@ -50,6 +50,7 @@ class PersonDetailSerializer(serializers.ModelSerializer):
 
 
 class AssignPersonToTeamSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Person
         fields = ("id", "team")
