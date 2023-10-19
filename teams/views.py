@@ -1,10 +1,10 @@
 from rest_framework import viewsets, status
-from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
 from teams.models import Team, Person
 from teams.pagination import ApiPagination
+from teams.permissions import IsAdminOrReadOnly
 from teams.serializers import (
     TeamSerializer,
     TeamDetailSerializer,
@@ -18,7 +18,7 @@ from teams.serializers import (
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAdminOrReadOnly,)
     pagination_class = ApiPagination
 
     def get_serializer_class(self):
@@ -31,7 +31,7 @@ class TeamViewSet(viewsets.ModelViewSet):
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.select_related("team")
     serializer_class = PersonSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAdminOrReadOnly,)
     pagination_class = ApiPagination
 
     def get_serializer_class(self):
