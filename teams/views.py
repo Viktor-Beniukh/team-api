@@ -35,6 +35,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_serializer_class(self):
+        """Distribution of serializers by actions"""
         if self.action == "retrieve":
             return TeamDetailSerializer
 
@@ -50,6 +51,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         ]
     )
     def list(self, request, *args, **kwargs):
+        """List teams with filter by name"""
         return super().list(request, *args, **kwargs)
 
 
@@ -71,6 +73,7 @@ class PersonViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_serializer_class(self):
+        """Distribution of serializers by actions"""
         if self.action == "list":
             return PersonListSerializer
 
@@ -102,4 +105,5 @@ class PersonViewSet(viewsets.ModelViewSet):
         ]
     )
     def list(self, request, *args, **kwargs):
+        """List people with filter by last name"""
         return super().list(request, *args, **kwargs)
